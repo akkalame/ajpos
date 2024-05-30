@@ -2,36 +2,36 @@ VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormLogin 
    Caption         =   "Login - AJ POS"
-   ClientHeight    =   5175
+   ClientHeight    =   4515
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   7515
+   ClientWidth     =   7740
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5175
-   ScaleWidth      =   7515
+   ScaleHeight     =   4515
+   ScaleWidth      =   7740
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox dataShowTxt 
       DataField       =   "usuario"
       DataSource      =   "Adodc1"
       Height          =   375
-      Left            =   5160
+      Left            =   3000
       TabIndex        =   6
       Text            =   "Text1"
-      Top             =   3960
+      Top             =   3240
       Width           =   615
    End
    Begin VB.CommandButton loginBtn 
       Caption         =   "Iniciar Sesion"
       Height          =   495
-      Left            =   1800
+      Left            =   2040
       TabIndex        =   5
-      Top             =   2520
+      Top             =   2400
       Width           =   3495
    End
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   495
-      Left            =   2280
-      Top             =   3840
+      Left            =   120
+      Top             =   3240
       Width           =   2775
       _ExtentX        =   4895
       _ExtentY        =   873
@@ -55,7 +55,7 @@ Begin VB.Form FormLogin
       Orientation     =   0
       Enabled         =   -1
       Connect         =   $"FormLogin.frx":0000
-      OLEDBString     =   $"FormLogin.frx":0089
+      OLEDBString     =   $"FormLogin.frx":008A
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -77,17 +77,17 @@ Begin VB.Form FormLogin
    Begin VB.TextBox claveTxt 
       Height          =   375
       IMEMode         =   3  'DISABLE
-      Left            =   3000
+      Left            =   3240
       PasswordChar    =   "*"
       TabIndex        =   3
-      Top             =   1800
+      Top             =   1680
       Width           =   2655
    End
    Begin VB.TextBox usuarioTxt 
       Height          =   375
-      Left            =   3000
+      Left            =   3240
       TabIndex        =   1
-      Top             =   1200
+      Top             =   1080
       Width           =   2655
    End
    Begin VB.Label Label3 
@@ -97,23 +97,23 @@ Begin VB.Form FormLogin
       Height          =   255
       Left            =   120
       TabIndex        =   4
-      Top             =   4800
+      Top             =   4080
       Width           =   7335
    End
    Begin VB.Label Label2 
       Caption         =   "Contraseña"
       Height          =   255
-      Left            =   1440
+      Left            =   1680
       TabIndex        =   2
-      Top             =   1800
+      Top             =   1680
       Width           =   1455
    End
    Begin VB.Label Label1 
       Caption         =   "Usuario"
       Height          =   255
-      Left            =   1440
+      Left            =   1680
       TabIndex        =   0
-      Top             =   1200
+      Top             =   1080
       Width           =   1455
    End
 End
@@ -142,6 +142,7 @@ Private Sub loginBtn_Click()
     
     If loginExitoso = True Then
         Me.Hide
+        FormMenu.Show
         
     Else
         MsgBox "Credenciales invalidas", vbOKOnly + vbCritical

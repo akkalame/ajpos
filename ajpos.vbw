@@ -1,0 +1,8 @@
+FormLogin = 78, 78, 967, 530, C, 29, 16, 918, 581, C
+FormProducto = 130, 130, 1019, 582, I, 26, -7, 777, 712, I
+FormNuevoProducto = 202, 92, 1091, 544, , 25, -2, 1001, 618, C
+FormCliente = 175, 52, 1064, 504, C, 25, -2, 1004, 603, C
+FormNuevoCliente = 0, 0, 889, 452, C, 25, 25, 1001, 565, C
+FormProveedor = 52, 52, 941, 504, C, 26, -1, 1008, 616, C
+FormNuevoProveedor = 0, 0, 0, 0, C, 27, 0, 1009, 616, C
+FormMenu = 0, 0, 0, 0, C, 52, 52, 987, 592, C
