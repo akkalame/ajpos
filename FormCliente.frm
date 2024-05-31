@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormCliente 
    BackColor       =   &H8000000A&
    Caption         =   "Cliente - AJ POS"
@@ -10,6 +11,52 @@ Begin VB.Form FormCliente
    ScaleHeight     =   8760
    ScaleWidth      =   13350
    StartUpPosition =   3  'Windows Default
+   Begin MSAdodcLib.Adodc Adodc1 
+      Height          =   495
+      Left            =   9480
+      Top             =   6960
+      Width           =   1200
+      _ExtentX        =   2117
+      _ExtentY        =   873
+      ConnectMode     =   0
+      CursorLocation  =   3
+      IsolationLevel  =   -1
+      ConnectionTimeout=   15
+      CommandTimeout  =   30
+      CursorType      =   3
+      LockType        =   3
+      CommandType     =   2
+      CursorOptions   =   0
+      CacheSize       =   50
+      MaxRecords      =   0
+      BOFAction       =   0
+      EOFAction       =   0
+      ConnectStringType=   1
+      Appearance      =   1
+      BackColor       =   -2147483643
+      ForeColor       =   -2147483640
+      Orientation     =   0
+      Enabled         =   -1
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
+      OLEDBFile       =   ""
+      DataSourceName  =   ""
+      OtherAttributes =   ""
+      UserName        =   ""
+      Password        =   ""
+      RecordSource    =   "cliente"
+      Caption         =   "Adodc1"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      _Version        =   393216
+   End
    Begin VB.CommandButton crearclientecmd 
       Caption         =   "Crear Cliente"
       Height          =   495
@@ -18,7 +65,7 @@ Begin VB.Form FormCliente
       Top             =   2160
       Width           =   1695
    End
-   Begin VB.CommandButton Command6 
+   Begin VB.CommandButton buscarBtn 
       Caption         =   "Buscar"
       Height          =   495
       Left            =   5160
@@ -83,6 +130,8 @@ Begin VB.Form FormCliente
       Width           =   1095
    End
    Begin VB.TextBox emailtxt 
+      DataField       =   "email"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -99,6 +148,8 @@ Begin VB.Form FormCliente
       Width           =   1695
    End
    Begin VB.TextBox telefonotxt 
+      DataField       =   "telefono"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -115,6 +166,8 @@ Begin VB.Form FormCliente
       Width           =   1695
    End
    Begin VB.TextBox direcciontxt 
+      DataField       =   "direccion"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -131,6 +184,8 @@ Begin VB.Form FormCliente
       Width           =   1695
    End
    Begin VB.TextBox cedulatxt 
+      DataField       =   "dni"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -147,6 +202,8 @@ Begin VB.Form FormCliente
       Width           =   1695
    End
    Begin VB.TextBox nombretxt 
+      DataField       =   "nombre"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -162,7 +219,9 @@ Begin VB.Form FormCliente
       Top             =   1200
       Width           =   1695
    End
-   Begin VB.TextBox Text1 
+   Begin VB.TextBox idtxt 
+      DataField       =   "id_cliente"
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -307,7 +366,7 @@ End If
 End If
 End Sub
 
-Private Sub Command6_Click()
+Private Sub buscarBtn_Click()
 Dim ok As String
 Dim encontrado As Boolean
 ok = Text4.Text
@@ -333,6 +392,11 @@ End Sub
 
 Private Sub crearclientecmd_Click()
 FormNuevoCliente.Show
+End Sub
+
+Private Sub Form_Load()
+Adodc1.Visible = False
+idtxt.Enabled = False
 End Sub
 
 Private Sub guardarcmd_Click()

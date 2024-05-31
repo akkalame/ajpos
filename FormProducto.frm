@@ -49,8 +49,8 @@ Begin VB.Form FormProducto
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   $"FormProducto.frx":0000
-      OLEDBString     =   $"FormProducto.frx":0089
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -95,8 +95,8 @@ Begin VB.Form FormProducto
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   $"FormProducto.frx":0112
-      OLEDBString     =   $"FormProducto.frx":019B
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -161,6 +161,7 @@ Begin VB.Form FormProducto
       Width           =   1455
    End
    Begin VB.TextBox buscarTxt 
+      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -420,6 +421,16 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Dim nombre, descripcion, categoria, costo, precio As String
+Dim mantStock As Integer
+Sub set_datos_registro()
+    nombre = Adodc1.Recordset.Fields(1)
+    descripcion = Adodc1.Recordset.Fields(2)
+    precio = Adodc1.Recordset.Fields(3)
+    costo = Adodc1.Recordset.Fields(4)
+    categoria = Adodc1.Recordset.Fields(5)
+    mantStock = Abs(Val(Adodc1.Recordset.Fields(6)))
+End Sub
 
 Sub cargar_categorias()
     categoriaCmb.Clear
@@ -429,6 +440,26 @@ Sub cargar_categorias()
         categoriaCmb.AddItem rsCategoria.Recordset.Fields(1)
         rsCategoria.Recordset.MoveNext
     Wend
+End Sub
+Sub activar_guardar()
+    Dim activar As Boolean
+    activar = False
+    
+    If nombreTxt.Text <> nombre Then
+        activar = True
+    ElseIf descripcionTxt.Text <> descripcion Then
+        activar = True
+    ElseIf preciotxt.Text <> precio Then
+        activar = True
+    ElseIf costoTxt.Text <> costo Then
+        activar = True
+    ElseIf categoriaCmb.Text <> categoria Then
+        activar = True
+    ElseIf mantieneStockCheck.Value <> mantStock Then
+        activar = True
+    End If
+    
+    guardarBtn.Enabled = activar
 End Sub
 
 Private Sub anteriorBtn_Click()
@@ -441,12 +472,12 @@ End Sub
 
 Sub setear_registro()
     codigoTxt.Text = Adodc1.Recordset.Fields(0)
-    nombretxt.Text = Adodc1.Recordset.Fields(1)
+    nombreTxt.Text = Adodc1.Recordset.Fields(1)
     descripcionTxt.Text = Adodc1.Recordset.Fields(2)
     preciotxt.Text = Adodc1.Recordset.Fields(3)
     costoTxt.Text = Adodc1.Recordset.Fields(4)
     categoriaCmb.Text = Adodc1.Recordset.Fields(5)
-    mantieneStockCheck.Value = Val(Adodc1.Recordset.Fields(6))
+    mantieneStockCheck.Value = Abs(Val(Adodc1.Recordset.Fields(6)))
 End Sub
 Private Sub buscarBtn_Click()
     Dim encontrado As Boolean
@@ -454,7 +485,7 @@ Private Sub buscarBtn_Click()
     
     Adodc1.Recordset.MoveFirst
     While encontrado = False And Adodc1.Recordset.EOF = False
-        If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
+        If Adodc1.Recordset.Fields(0) = buscarTxt.Text Then
             encontrado = True
         Else
             Adodc1.Recordset.MoveNext
@@ -466,19 +497,49 @@ Private Sub buscarBtn_Click()
     End If
 End Sub
 
+Private Sub categoriaCmb_Change()
+    activar_guardar
+End Sub
+
+Private Sub costoTxt_Change()
+    activar_guardar
+End Sub
+
+Private Sub descripcionTxt_Change()
+    activar_guardar
+End Sub
+
 Private Sub Form_Load()
     Adodc1.Refresh
     rsCategoria.Refresh
     
+    guardarBtn.Enabled = False
     codigoTxt.Enabled = False
     Adodc1.Visible = False
     rsCategoria.Visible = False
     cargar_categorias
     setear_registro
+    set_datos_registro
+End Sub
+
+Private Sub guardarBtn_Click()
+    Adodc1.Recordset.UpdateBatch
+End Sub
+
+Private Sub mantieneStockCheck_Click()
+    activar_guardar
+End Sub
+
+Private Sub nombreTxt_Change()
+    activar_guardar
 End Sub
 
 Private Sub nuevoItemBtn_Click()
     FormNuevoProducto.Show
+End Sub
+
+Private Sub preciotxt_Change()
+    activar_guardar
 End Sub
 
 Private Sub primeroBtn_Click()

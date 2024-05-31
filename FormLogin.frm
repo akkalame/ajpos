@@ -122,6 +122,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub dataShowTxt_Change()
+
+End Sub
+
 Private Sub Form_Load()
     Adodc1.Visible = False
     dataShowTxt.Visible = False
