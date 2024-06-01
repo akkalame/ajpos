@@ -481,11 +481,12 @@ End Sub
 Private Sub buscarBtn_Click()
     Dim encontrado As Boolean
     encontrado = False
-    
+
     Adodc1.Recordset.MoveFirst
     While encontrado = False And Adodc1.Recordset.EOF = False
         If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
             encontrado = True
+            MsgBox "Registro Encontrado"
         Else
             Adodc1.Recordset.MoveNext
         End If
@@ -522,6 +523,24 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub guardarBtn_Click()
+Dim resp As Integer
+If nombretxt.Text = "" Then
+MsgBox "Colocar Nombre"
+nombretxt.SetFocus
+Exit Sub
+ElseIf descipciontxt.Text = "" Then
+MsgBox "Colocar Descripción"
+descipciontxt.SetFocus
+Exit Sub
+ElseIf preciotxt.Text = "" Then
+MsgBox "Colocar Precio"
+preciotxt.SetFocus
+Exit Sub
+ElseIf costoTxt.Text = "" Then
+MsgBox "Colocar Costo"
+costoTxt.SetFocus
+Exit Sub
+End If
     Adodc1.Recordset.UpdateBatch
 End Sub
 

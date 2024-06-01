@@ -10,6 +10,23 @@ Begin VB.Form FormCliente
    ScaleHeight     =   8040
    ScaleWidth      =   8745
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox buscartxt 
+      DataSource      =   "Adodc1"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   2640
+      TabIndex        =   19
+      Top             =   7200
+      Width           =   2055
+   End
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   495
       Left            =   7200
@@ -60,7 +77,7 @@ Begin VB.Form FormCliente
       Caption         =   "Crear Cliente"
       Height          =   495
       Left            =   6480
-      TabIndex        =   19
+      TabIndex        =   18
       Top             =   2160
       Width           =   1695
    End
@@ -68,25 +85,9 @@ Begin VB.Form FormCliente
       Caption         =   "Buscar"
       Height          =   495
       Left            =   4920
-      TabIndex        =   18
-      Top             =   7200
-      Width           =   1455
-   End
-   Begin VB.TextBox buscartxt 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   2520
       TabIndex        =   17
       Top             =   7200
-      Width           =   2175
+      Width           =   1455
    End
    Begin VB.CommandButton ultimocmd 
       Caption         =   "Ultimo"
@@ -370,24 +371,24 @@ End If
 End Sub
 
 Private Sub buscarBtn_Click()
-    Dim encontrado As Boolean
+   Dim encontrado As Boolean
     encontrado = False
-    Adodc1.Recordset.MoveLast
+    Adodc1.Recordset.MoveFirst
     
-    If buscartxt.Text <> "" Then
+    If buscarTxt.Text <> "" Then
         While (Adodc1.Recordset.EOF = False) And (encontrado = False)
-            If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
+            If Adodc1.Recordset.Fields(0) = buscarTxt.Text Then
                 encontrado = True
                 MsgBox "Registro encontrado", vbOKOnly + vbInformation, "Notificacion"
-                mostrardatos
+                
             Else
                 Adodc1.Recordset.MoveNext
             End If
         Wend
         If encontrado = False Then
             MsgBox "Registro no encontrado", vbOK + vbCritical, "Advertencia"
-            buscartxt.Text = ""
-            buscartxt.SetFocus
+            buscarTxt.Text = ""
+            buscarTxt.SetFocus
         End If
     End If
 End Sub
@@ -455,6 +456,10 @@ If vbOK Then
 Adodc1.Recordset.MoveLast
 End If
 End If
+End Sub
+
+Private Sub Text1_Change()
+
 End Sub
 
 Private Sub ultimocmd_Click()

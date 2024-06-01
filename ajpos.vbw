@@ -1,9 +1,9 @@
 FormLogin = 78, 78, 967, 530, C, 29, 16, 918, 581, C
-FormProducto = 152, 16, 1041, 481, C, 26, -7, 777, 712, C
-FormNuevoProducto = 48, 12, 937, 457, C, 25, -2, 1001, 618, C
-FormCliente = 215, 41, 992, 493, C, 25, -2, 1016, 643, C
-FormNuevoCliente = 108, 66, 997, 518, C, 55, 20, 1031, 560, C
-FormProveedor = 52, 52, 941, 504, C, 26, -1, 1002, 616, C
+FormProducto = 81, 27, 970, 486, , 35, -24, 948, 695, C
+FormNuevoProducto = 136, 20, 1025, 465, C, 25, -2, 1001, 618, C
+FormCliente = 26, 21, 803, 473, C, 25, -2, 1016, 643, C
+FormNuevoCliente = 175, 39, 1064, 491, C, 55, 20, 1031, 560, C
+FormProveedor = 183, 44, 1072, 496, C, 26, -1, 1002, 616, C
 FormNuevoProveedor = 43, 23, 922, 475, C, 86, 12, 1068, 628, C
 FormMenu = 78, 78, 957, 530, C, 49, 1, 1038, 616, C
 FormAlmacen = 104, 104, 983, 556, C, 28, -4, 1015, 609, C

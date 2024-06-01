@@ -472,6 +472,33 @@ Adodc1.Visible = False
 idtxt.Enabled = False
 End Sub
 
+Private Sub guardarBtn_Click()
+If nombretxt.Text = "" Then
+MsgBox "Colocar Nombre"
+nombretxt.SetFocus
+Exit Sub
+ElseIf direcciontxt.Text = "" Then
+MsgBox "Colocar Dirección"
+direcciontxt.SetFocus
+Exit Sub
+ElseIf cedulatxt.Text = "" Then
+MsgBox "Colocar Cédula"
+cedulatxt.SetFocus
+Exit Sub
+ElseIf telefonotxt.Text = "" Then
+MsgBox "Colocar Teléfono"
+telefonotxt.SetFocus
+Exit Sub
+ElseIf emailtxt.Text = "" Then
+MsgBox "Colocar Email"
+emailtxt.SetFocus
+Exit Sub
+ElseIf sitiowebtxt.Text = "" Then
+MsgBox "Colocar Sitio Web"
+sitiowebtxt.SetFocus
+Exit Sub
+End Sub
+
 Private Sub pirmeroBtn_Click()
 Adodc1.Recordset.MoveFirst
 End Sub
