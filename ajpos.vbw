@@ -6,4 +6,5 @@ FormNuevoCliente = 108, 66, 997, 518, C, 55, 20, 1031, 560, C
 FormProveedor = 52, 52, 941, 504, C, 26, -1, 1002, 616, C
 FormNuevoProveedor = 43, 23, 922, 475, C, 86, 12, 1068, 628, C
 FormMenu = 78, 78, 957, 530, C, 49, 1, 1038, 616, C
-FormAlmacen = 0, 0, 0, 0, C, 28, -4, 1015, 609, C
+FormAlmacen = 104, 104, 983, 556, C, 28, -4, 1015, 609, C
+FormNuevoAlmacen = 181, 56, 1060, 508, C, 21, 0, 558, 578, C
