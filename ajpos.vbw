@@ -1,5 +1,5 @@
 FormLogin = 78, 78, 967, 530, C, 29, 16, 918, 581, C
-FormProducto = 81, 27, 970, 486, , 35, -24, 948, 695, C
+FormProducto = 81, 27, 970, 486, C, 35, -24, 948, 695, C
 FormNuevoProducto = 136, 20, 1025, 465, C, 25, -2, 1001, 618, C
 FormCliente = 26, 21, 803, 473, C, 25, -2, 1016, 643, C
 FormNuevoCliente = 175, 39, 1064, 491, C, 55, 20, 1031, 560, C

@@ -1,15 +1,81 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form FormCliente 
    Caption         =   "Cliente - AJ POS"
    ClientHeight    =   8040
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   8745
+   ClientWidth     =   10770
    LinkTopic       =   "Form1"
    ScaleHeight     =   8040
-   ScaleWidth      =   8745
+   ScaleWidth      =   10770
    StartUpPosition =   3  'Windows Default
+   Begin MSDataGridLib.DataGrid DataGrid1 
+      Bindings        =   "FormCliente.frx":0000
+      Height          =   975
+      Left            =   6360
+      TabIndex        =   20
+      Top             =   1200
+      Width           =   3135
+      _ExtentX        =   5530
+      _ExtentY        =   1720
+      _Version        =   393216
+      HeadLines       =   1
+      RowHeight       =   15
+      BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ColumnCount     =   2
+      BeginProperty Column00 
+         DataField       =   ""
+         Caption         =   ""
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   8202
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      BeginProperty Column01 
+         DataField       =   ""
+         Caption         =   ""
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   8202
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      SplitCount      =   1
+      BeginProperty Split0 
+         BeginProperty Column00 
+         EndProperty
+         BeginProperty Column01 
+         EndProperty
+      EndProperty
+   End
    Begin VB.TextBox buscartxt 
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -76,9 +142,9 @@ Begin VB.Form FormCliente
    Begin VB.CommandButton crearclientecmd 
       Caption         =   "Crear Cliente"
       Height          =   495
-      Left            =   6480
+      Left            =   6360
       TabIndex        =   18
-      Top             =   2160
+      Top             =   240
       Width           =   1695
    End
    Begin VB.CommandButton buscarBtn 
@@ -375,9 +441,9 @@ Private Sub buscarBtn_Click()
     encontrado = False
     Adodc1.Recordset.MoveFirst
     
-    If buscarTxt.Text <> "" Then
+    If buscartxt.Text <> "" Then
         While (Adodc1.Recordset.EOF = False) And (encontrado = False)
-            If Adodc1.Recordset.Fields(0) = buscarTxt.Text Then
+            If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
                 encontrado = True
                 MsgBox "Registro encontrado", vbOKOnly + vbInformation, "Notificacion"
                 
@@ -387,8 +453,8 @@ Private Sub buscarBtn_Click()
         Wend
         If encontrado = False Then
             MsgBox "Registro no encontrado", vbOK + vbCritical, "Advertencia"
-            buscarTxt.Text = ""
-            buscarTxt.SetFocus
+            buscartxt.Text = ""
+            buscartxt.SetFocus
         End If
     End If
 End Sub

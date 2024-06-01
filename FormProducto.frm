@@ -5,18 +5,27 @@ Begin VB.Form FormProducto
    ClientHeight    =   9030
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   9510
+   ClientWidth     =   11490
    ClipControls    =   0   'False
    LinkTopic       =   "Form1"
    ScaleHeight     =   9030
-   ScaleWidth      =   9510
+   ScaleWidth      =   11490
    StartUpPosition =   3  'Windows Default
+   Begin VB.PictureBox Picture1 
+      Height          =   2535
+      Left            =   5760
+      ScaleHeight     =   2475
+      ScaleWidth      =   4995
+      TabIndex        =   22
+      Top             =   1320
+      Width           =   5055
+   End
    Begin VB.TextBox Text1 
       DataField       =   "nombre"
       DataSource      =   "rsCategoria"
       Height          =   285
       Left            =   8280
-      TabIndex        =   22
+      TabIndex        =   21
       Text            =   "Text1"
       Top             =   8520
       Visible         =   0   'False
@@ -120,7 +129,7 @@ Begin VB.Form FormProducto
       DataSource      =   "Adodc1"
       Height          =   255
       Left            =   840
-      TabIndex        =   21
+      TabIndex        =   20
       Top             =   5520
       Width           =   2775
    End
@@ -129,7 +138,7 @@ Begin VB.Form FormProducto
       DataSource      =   "Adodc1"
       Height          =   315
       Left            =   1800
-      TabIndex        =   20
+      TabIndex        =   19
       Text            =   "Combo1"
       Top             =   3000
       Width           =   3495
@@ -138,18 +147,9 @@ Begin VB.Form FormProducto
       Caption         =   "Crear Producto"
       Height          =   495
       Left            =   7080
-      TabIndex        =   19
+      TabIndex        =   18
       Top             =   240
       Width           =   1815
-   End
-   Begin VB.PictureBox imagenPic 
-      Height          =   2175
-      Left            =   5760
-      ScaleHeight     =   2115
-      ScaleWidth      =   3315
-      TabIndex        =   18
-      Top             =   1200
-      Width           =   3375
    End
    Begin VB.CommandButton buscarBtn 
       Caption         =   "Buscar"
