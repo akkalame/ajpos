@@ -25,7 +25,7 @@ Begin VB.Form FormNuevoProducto
       Visible         =   0   'False
       Width           =   495
    End
-   Begin VB.TextBox nombreTxt 
+   Begin VB.TextBox nombretxt 
       DataField       =   "nombre"
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -98,8 +98,8 @@ Begin VB.Form FormNuevoProducto
       Width           =   1695
    End
    Begin VB.ComboBox categoriaCmb 
-      DataField       =   "categoria_producto"
-      DataSource      =   "Adodc1"
+      DataField       =   "nombre"
+      DataSource      =   "rsCategoria"
       Height          =   315
       Left            =   2640
       TabIndex        =   4
@@ -168,8 +168,8 @@ Begin VB.Form FormNuevoProducto
       ForeColor       =   -2147483640
       Orientation     =   0
       Enabled         =   -1
-      Connect         =   $"FormNuevoProducto.frx":0000
-      OLEDBString     =   $"FormNuevoProducto.frx":0089
+      Connect         =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
+      OLEDBString     =   "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Hernandez\Desktop\ajpos\database\pos_project.mdb;Persist Security Info=False"
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
@@ -285,34 +285,18 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
-Sub cargar_categorias()
-    categoriaCmb.Clear
-    rsCategoria.Recordset.MoveFirst
-    
-    While rsCategoria.Recordset.EOF = False
-        categoriaCmb.AddItem rsCategoria.Recordset.Fields(1)
-        rsCategoria.Recordset.MoveNext
-    Wend
-End Sub
-
 Sub guardar_registro()
     FormProducto.Adodc1.Recordset.AddNew
     FormProducto.Adodc1.Recordset.Fields(1) = nombretxt.Text
     FormProducto.Adodc1.Recordset.Fields(2) = descripcionTxt.Text
-    FormProducto.Adodc1.Recordset.Fields(3) = categoriaCmb.Text
-    FormProducto.Adodc1.Recordset.Fields(4) = preciotxt.Text
-    FormProducto.Adodc1.Recordset.Fields(5) = costoTxt.Text
+    FormProducto.Adodc1.Recordset.Fields(3) = preciotxt.Text
+    FormProducto.Adodc1.Recordset.Fields(4) = costoTxt.Text
+    FormProducto.Adodc1.Recordset.Fields(5) = categoriaCmb.Text
     FormProducto.Adodc1.Recordset.Fields(6) = mantieneStockCheck.Value
     FormProducto.Adodc1.Recordset.Update
 End Sub
 Private Sub cancelBtn_Click()
     Me.Hide
-End Sub
-
-Private Sub Form_Load()
-    cargar_categorias
-    rsCategoria.Visible = False
-    FormProducto.Adodc1.Refresh
 End Sub
 
 Private Sub guardarBtn_Click()

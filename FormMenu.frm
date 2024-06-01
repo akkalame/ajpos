@@ -1,19 +1,26 @@
 VERSION 5.00
 Begin VB.Form FormMenu 
    Caption         =   "AJ POS"
-   ClientHeight    =   4920
+   ClientHeight    =   6225
    ClientLeft      =   225
    ClientTop       =   870
-   ClientWidth     =   8775
+   ClientWidth     =   12825
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4920
-   ScaleWidth      =   8775
+   ScaleHeight     =   6225
+   ScaleWidth      =   12825
    StartUpPosition =   3  'Windows Default
-   Begin VB.Menu archivo 
-      Caption         =   "Archivo"
-      Begin VB.Menu configuracion 
-         Caption         =   "Configuracion"
-      End
+   Begin VB.PictureBox Picture1 
+      Height          =   8295
+      Left            =   0
+      Picture         =   "FormMenu.frx":0000
+      ScaleHeight     =   8235
+      ScaleWidth      =   13155
+      TabIndex        =   0
+      Top             =   -1200
+      Width           =   13215
+   End
+   Begin VB.Menu opcs 
+      Caption         =   "Opciones"
       Begin VB.Menu salir 
          Caption         =   "Salir"
       End

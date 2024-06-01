@@ -6,15 +6,15 @@ Begin VB.Form FormCliente
    ClientHeight    =   8760
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   13350
+   ClientWidth     =   8745
    LinkTopic       =   "Form1"
    ScaleHeight     =   8760
-   ScaleWidth      =   13350
+   ScaleWidth      =   8745
    StartUpPosition =   3  'Windows Default
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   495
-      Left            =   9480
-      Top             =   6960
+      Left            =   7200
+      Top             =   5520
       Width           =   1200
       _ExtentX        =   2117
       _ExtentY        =   873
@@ -68,9 +68,9 @@ Begin VB.Form FormCliente
    Begin VB.CommandButton buscarBtn 
       Caption         =   "Buscar"
       Height          =   495
-      Left            =   5160
+      Left            =   4920
       TabIndex        =   18
-      Top             =   7920
+      Top             =   7200
       Width           =   1455
    End
    Begin VB.TextBox buscartxt 
@@ -84,49 +84,49 @@ Begin VB.Form FormCliente
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   2640
+      Left            =   2520
       TabIndex        =   17
-      Top             =   7920
+      Top             =   7200
       Width           =   2175
    End
    Begin VB.CommandButton ultimocmd 
       Caption         =   "Ultimo"
       Height          =   495
-      Left            =   7080
+      Left            =   6600
       TabIndex        =   16
-      Top             =   6960
+      Top             =   6480
       Width           =   1455
    End
    Begin VB.CommandButton primerocmd 
       Caption         =   "Primero"
       Height          =   495
-      Left            =   5280
+      Left            =   4920
       TabIndex        =   15
-      Top             =   6960
+      Top             =   6480
       Width           =   1455
    End
    Begin VB.CommandButton anteriorcmd 
       Caption         =   "Anterior"
       Height          =   495
-      Left            =   3480
+      Left            =   1560
       TabIndex        =   14
-      Top             =   6960
+      Top             =   6480
       Width           =   1455
    End
    Begin VB.CommandButton siguientecmd 
       Caption         =   "Siguiente"
       Height          =   495
-      Left            =   1680
+      Left            =   3240
       TabIndex        =   13
-      Top             =   6960
+      Top             =   6480
       Width           =   1455
    End
    Begin VB.CommandButton guardarcmd 
       Caption         =   "Guardar"
       Height          =   495
-      Left            =   3720
+      Left            =   3600
       TabIndex        =   12
-      Top             =   5880
+      Top             =   5760
       Width           =   1095
    End
    Begin VB.TextBox emailtxt 
@@ -352,8 +352,12 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Sub mostrardatos()
-Text1.Text = Adodc1.Recordset.Fields(0)
-Text2.Text = Adodc1.Recordset.Fields(1)
+    idtxt.Text = Adodc1.Recordset.Fields(0)
+    nombretxt.Text = Adodc1.Recordset.Fields(1)
+    cedulatxt.Text = Adodc1.Recordset.Fields(2)
+    direcciontxt.Text = Adodc1.Recordset.Fields(3)
+    telefonotxt.Text = Adodc1.Recordset.Fields(4)
+    emailtxt.Text = Adodc1.Recordset.Fields(5)
 End Sub
 
 Private Sub anteriorcmd_Click()
@@ -367,27 +371,26 @@ End If
 End Sub
 
 Private Sub buscarBtn_Click()
-Dim ok As String
-Dim encontrado As Boolean
-ok = Text4.Text
-If ok <> "" Then
- Adodc1.Recordset.MoveFirst
-encontrado = False
-While (Adodc1.Recordset.EOF = False) And (encontrado = False)
- If Adodc1.Recordset.Fields(0) = ok Then
-   encontrado = True
-   MsgBox " registro encontrado", vbOKOnly + vbInformation, "titulo"
-    mostrardatos
-Else
-Adodc1.Recordset.MoveNext
-End If
-Wend
-If (Adodc1.Recordset.EOF = True) And (encontrado = False) Then
- MsgBox "registro no encontrado", vbOK + vbCritical, "advertencia"
- Text3.Text = ""
- Text4.SetFocus
-End If
-End If
+    Dim encontrado As Boolean
+    encontrado = False
+    Adodc1.Recordset.MoveFirst
+    
+    If buscartxt.Text <> "" Then
+        While (Adodc1.Recordset.EOF = False) And (encontrado = False)
+            If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
+                encontrado = True
+                MsgBox "Registro encontrado", vbOKOnly + vbInformation, "Notificacion"
+                mostrardatos
+            Else
+                Adodc1.Recordset.MoveNext
+            End If
+        Wend
+        If encontrado = False Then
+            MsgBox "Registro no encontrado", vbOK + vbCritical, "Advertencia"
+            buscartxt.Text = ""
+            buscartxt.SetFocus
+        End If
+    End If
 End Sub
 
 Private Sub crearclientecmd_Click()
@@ -401,13 +404,25 @@ End Sub
 
 Private Sub guardarcmd_Click()
 Dim resp As Integer
-If Text1.Text = "" Then
-MsgBox "Colocar nombre"
-Text1.SetFocus
+If nombretxt.Text = "" Then
+MsgBox "Colocar Nombre"
+nombretxt.SetFocus
 Exit Sub
-ElseIf Text2.Text = "" Then
-MsgBox "Colocar cédula"
-Text2.SetFocus
+ElseIf direcciontxt.Text = "" Then
+MsgBox "Colocar Dirección"
+direcciontxt.SetFocus
+Exit Sub
+ElseIf cedulatxt.Text = "" Then
+MsgBox "Colocar Cédula"
+cedulatxt.SetFocus
+Exit Sub
+ElseIf telefonotxt.Text = "" Then
+MsgBox "Colocar Teléfono"
+telefonotxt.SetFocus
+Exit Sub
+ElseIf emailtxt.Text = "" Then
+MsgBox "Colocar Email"
+emailtxt.SetFocus
 Exit Sub
 ElseIf incluir Then
 resp = MsgBox("Desea guardar?", vbOKCancel + vbQuestion, "Advertencia")

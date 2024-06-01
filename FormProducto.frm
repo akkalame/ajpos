@@ -217,7 +217,7 @@ Begin VB.Form FormProducto
       Top             =   6240
       Width           =   1455
    End
-   Begin VB.TextBox costoTxt 
+   Begin VB.TextBox costotxt 
       DataField       =   "costo"
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -253,7 +253,7 @@ Begin VB.Form FormProducto
       Top             =   3840
       Width           =   1695
    End
-   Begin VB.TextBox descripcionTxt 
+   Begin VB.TextBox descripciontxt 
       DataField       =   "descripcion"
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -271,7 +271,7 @@ Begin VB.Form FormProducto
       Top             =   2160
       Width           =   3495
    End
-   Begin VB.TextBox nombreTxt 
+   Begin VB.TextBox nombretxt 
       DataField       =   "nombre"
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -289,7 +289,7 @@ Begin VB.Form FormProducto
       Top             =   1320
       Width           =   3495
    End
-   Begin VB.TextBox codigoTxt 
+   Begin VB.TextBox codigotxt 
       DataField       =   "Id_producto"
       DataSource      =   "Adodc1"
       BeginProperty Font 
@@ -445,7 +445,7 @@ Sub activar_guardar()
     Dim activar As Boolean
     activar = False
     
-    If nombreTxt.Text <> nombre Then
+    If nombretxt.Text <> nombre Then
         activar = True
     ElseIf descripcionTxt.Text <> descripcion Then
         activar = True
@@ -471,8 +471,8 @@ Private Sub anteriorBtn_Click()
 End Sub
 
 Sub setear_registro()
-    codigoTxt.Text = Adodc1.Recordset.Fields(0)
-    nombreTxt.Text = Adodc1.Recordset.Fields(1)
+    codigotxt.Text = Adodc1.Recordset.Fields(0)
+    nombretxt.Text = Adodc1.Recordset.Fields(1)
     descripcionTxt.Text = Adodc1.Recordset.Fields(2)
     preciotxt.Text = Adodc1.Recordset.Fields(3)
     costoTxt.Text = Adodc1.Recordset.Fields(4)
@@ -485,7 +485,7 @@ Private Sub buscarBtn_Click()
     
     Adodc1.Recordset.MoveFirst
     While encontrado = False And Adodc1.Recordset.EOF = False
-        If Adodc1.Recordset.Fields(0) = buscarTxt.Text Then
+        If Adodc1.Recordset.Fields(0) = buscartxt.Text Then
             encontrado = True
         Else
             Adodc1.Recordset.MoveNext
@@ -514,7 +514,7 @@ Private Sub Form_Load()
     rsCategoria.Refresh
     
     guardarBtn.Enabled = False
-    codigoTxt.Enabled = False
+    codigotxt.Enabled = False
     Adodc1.Visible = False
     rsCategoria.Visible = False
     cargar_categorias
