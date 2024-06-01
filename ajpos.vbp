@@ -12,6 +12,7 @@ Form=FormNuevoCliente.frm
 Form=FormProveedor.frm
 Form=FormNuevoProveedor.frm
 Form=FormMenu.frm
+Form=FormAlmacen.frm
 IconForm="FormLogin"
 Startup="FormLogin"
 HelpFile=""

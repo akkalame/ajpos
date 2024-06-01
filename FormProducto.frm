@@ -1,7 +1,6 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormProducto 
-   BackColor       =   &H8000000A&
    Caption         =   "Producto - AJ POS"
    ClientHeight    =   9030
    ClientLeft      =   120

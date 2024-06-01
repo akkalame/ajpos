@@ -1,14 +1,13 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormCliente 
-   BackColor       =   &H8000000A&
    Caption         =   "Cliente - AJ POS"
-   ClientHeight    =   8760
+   ClientHeight    =   8040
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   8745
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8760
+   ScaleHeight     =   8040
    ScaleWidth      =   8745
    StartUpPosition =   3  'Windows Default
    Begin MSAdodcLib.Adodc Adodc1 
@@ -373,7 +372,7 @@ End Sub
 Private Sub buscarBtn_Click()
     Dim encontrado As Boolean
     encontrado = False
-    Adodc1.Recordset.MoveFirst
+    Adodc1.Recordset.MoveLast
     
     If buscartxt.Text <> "" Then
         While (Adodc1.Recordset.EOF = False) And (encontrado = False)

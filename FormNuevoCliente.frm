@@ -1,7 +1,6 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormNuevoCliente 
-   BackColor       =   &H8000000A&
    Caption         =   "Nuevo Cliente -AJ POS"
    ClientHeight    =   7470
    ClientLeft      =   120
@@ -260,16 +259,21 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 Sub guardar_registro()
-    FormProducto.Adodc1.Recordset.AddNew
-    FormProducto.Adodc1.Recordset.Fields(1) = nombretxt.Text
-    FormProducto.Adodc1.Recordset.Fields(2) = cedulatxt.Text
-    FormProducto.Adodc1.Recordset.Fields(3) = direcciontxt.Text
-    FormProducto.Adodc1.Recordset.Fields(4) = telefonotxt.Text
-    FormProducto.Adodc1.Recordset.Fields(5) = emailtxt.Text
-    FormProducto.Adodc1.Recordset.Update
+    FormCliente.Adodc1.Recordset.AddNew
+    FormCliente.Adodc1.Recordset.Fields(1) = nombretxt.Text
+    FormCliente.Adodc1.Recordset.Fields(2) = cedulatxt.Text
+    FormCliente.Adodc1.Recordset.Fields(3) = direcciontxt.Text
+    FormCliente.Adodc1.Recordset.Fields(4) = telefonotxt.Text
+    FormCliente.Adodc1.Recordset.Fields(5) = emailtxt.Text
+    FormCliente.Adodc1.Recordset.Update
 End Sub
 Private Sub cancelarBtn_Click()
-Me.Hide
+    Me.Hide
+    nombretxt.Text = ""
+    cedulatxt.Text = ""
+    direcciontxt.Text = ""
+    telefonotxt.Text = ""
+    emailtxt.Text = ""
 End Sub
 Private Sub Form_Load()
 Adodc1.Visible = False

@@ -36,9 +36,6 @@ Begin VB.Form FormMenu
       Begin VB.Menu proveedor 
          Caption         =   "Proveedor"
       End
-      Begin VB.Menu categoria_producto 
-         Caption         =   "Categoria de Producto"
-      End
       Begin VB.Menu almacen 
          Caption         =   "Almacen"
       End
@@ -48,26 +45,14 @@ Begin VB.Form FormMenu
       Begin VB.Menu factura 
          Caption         =   "Factura"
       End
-      Begin VB.Menu recepcion 
-         Caption         =   "Recepcion"
-      End
       Begin VB.Menu pago 
          Caption         =   "Pago"
-      End
-      Begin VB.Menu movimiento_inventario 
-         Caption         =   "Movimiento de Inventario"
       End
    End
    Begin VB.Menu informes 
       Caption         =   "Informes"
-      Begin VB.Menu detalle_ventas 
-         Caption         =   "Detalle de Ventas"
-      End
       Begin VB.Menu resumen_ventas 
          Caption         =   "Resumen de Ventas"
-      End
-      Begin VB.Menu movimiento_inventario_informe 
-         Caption         =   "Movimiento de Inventario"
       End
    End
 End
@@ -76,6 +61,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub almacen_Click()
+FormAlmacen.Show
+End Sub
+
 Private Sub cliente_Click()
     FormCliente.Show
 End Sub

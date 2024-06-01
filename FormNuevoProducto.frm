@@ -1,7 +1,6 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form FormNuevoProducto 
-   BackColor       =   &H8000000A&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Nuevo Producto - AJ POS"
    ClientHeight    =   6375
@@ -144,10 +143,10 @@ Begin VB.Form FormNuevoProducto
    End
    Begin MSAdodcLib.Adodc rsCategoria 
       Height          =   330
-      Left            =   8040
-      Top             =   4200
-      Width           =   1815
-      _ExtentX        =   3201
+      Left            =   7320
+      Top             =   0
+      Width           =   2280
+      _ExtentX        =   4022
       _ExtentY        =   582
       ConnectMode     =   0
       CursorLocation  =   3
@@ -300,6 +299,7 @@ Private Sub cancelBtn_Click()
 End Sub
 
 Private Sub guardarBtn_Click()
+
     guardar_registro
     
     Me.Hide
